@@ -1,0 +1,229 @@
+:root {
+  --color-brand--1: #ffb545;
+  --color-brand--2: #00c46a;
+  --color-primary: #5ec576;
+  --color-dark--1: #2d3439;
+  --color-dark--2: #42484d;
+  --color-light--1: #aaa;
+  --color-light--2: #f3f3f3;
+  --color-light--3: rgb(237, 240, 240);
+  --button-border: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 85%;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: #444;
+  line-height: 1.9;
+  background-color: var(--color-light--2);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* GENERAL */
+.header {
+  background-color: white;
+}
+
+.nav {
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav__button {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 50%;
+  padding: 0.8rem 2rem;
+  border-radius: var(--button-border);
+  border: none;
+  background-color: var(--color-primary);
+}
+
+.section__btn:hover {
+  background-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.section {
+  padding-top: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.section__btn {
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  background-color: var(--color-light--3);
+  border: none;
+  border-radius: var(--button-border);
+}
+
+/* CARD CONTAINER FOR THE CARDS */
+.section__card-container {
+  display: grid;
+  max-width: 60%;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.section__card-box {
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 20px;
+  height: 300px;
+}
+
+.section__card-box p:first-child {
+  font-weight: bold;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  border: 2px solid var(--color-primary);
+  background-color: whitesmoke;
+  box-shadow: 0 4rem 6rem rgb(0 0 0 / 30%);
+  border-radius: 20px;
+  transition: 1s ease-in-out;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__header {
+  padding-bottom: 0.6rem;
+}
+
+.modal__input {
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+}
+
+.is__read {
+  font-size: 1.2rem;
+}
+
+.modal__close-btn {
+  font-family: inherit;
+  background-color: inherit;
+  margin-top: -2rem;
+  margin-right: -1.5rem;
+  font-size: 2rem;
+  align-self: flex-end;
+  cursor: pointer;
+  border: none;
+  color: var(--color-light--1);
+}
+
+.modal__submit-btn {
+  font-family: inherit;
+  font-size: 1.2rem;
+  padding: 0.6rem 3rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 1rem;
+  background-color: var(--color-primary);
+}
+
+.modal--hidden {
+  display: none;
+}
+
+.footer {
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.6rem;
+  font-weight: bold;
+  background-color: var(--color-light--1);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay.active {
+  display: block;
+}
+
+.section__read-btn {
+  font-size: 1.1rem;
+  font-family: inherit;
+  padding: 1rem 3.5rem;
+  border: none;
+  border-radius: var(--button-border);
+  background-color: var(--color-brand--2);
+}
+
+.section__read-btn:hover {
+  filter: brightness(80%);
+}
+
+/* .notReadbtn__card--box {
+  background-color: red;
+} */
+
+.section__remove-btn {
+  font-size: 1.1rem;
+  font-family: inherit;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: var(--button-border);
+  background-color: var(--color-light--1);
+}
+
+.section__remove-btn:hover {
+  filter: brightness(80%);
+}

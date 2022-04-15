@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library!</title>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="script.js"></script>
+  </head>
+
+  <body>
+    <div class="main">
+      <header class="header">
+        <nav class="nav">
+          <h1 class="nav__title">Library</h1>
+          <button class="nav__button">Log in</button>
+        </nav>
+      </header>
+
+      <main class="section">
+        <button class="section__btn">+ Add Books!</button>
+        <div class="section__card-container">
+          <div class="section__card-box">
+            <p class="book-title">"The Lord of The Rings"</p>
+            <p class="book-author">A. Tolkien</p>
+            <p class="book-pages">752 pages</p>
+            <button class="section__read-btn">Read</button>
+            <button class="section__remove-btn">Remove</button>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">mazcona86 - The Odin Project - 2022</footer>
+
+      <div class="modal modal--hidden">
+        <button class="modal__close-btn">x</button>
+        <h3 class="modal__header">Add your books here!</h3>
+        <form class="modal__form">
+          <label for="title"></label>
+          <input
+            class="modal__input"
+            type="text"
+            id="title"
+            placeholder="Title"
+          />
+          <label for="author"></label>
+          <input class="modal__input"" type="text" id="author"
+          placeholder="Author" />
+          <label for="pages"></label>
+          <input
+            class="modal__input"
+            type="number"
+            id="pages"
+            placeholder="Pages"
+          />
+          <div class="modal__read--btn">
+            <label class="read" for="isRead">Have you read it?</label>
+            <input class="checkbox" type="checkbox" id="isRead" />
+          </div>
+          <button class="modal__submit-btn" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="overlay"></div>
+    </div>
+  </body>
+</html>
