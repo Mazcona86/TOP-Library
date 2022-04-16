@@ -169,6 +169,10 @@ body {
   background-color: var(--color-primary);
 }
 
+.modal__submit-btn:hover {
+  filter: brightness(90%);
+}
+
 .modal--hidden {
   display: none;
 }

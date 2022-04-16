@@ -11,7 +11,6 @@
       href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
       rel="stylesheet"
     />
-    <script defer src="script.js"></script>
   </head>
 
   <body>
@@ -33,32 +32,45 @@
       <div class="modal modal--hidden">
         <button class="modal__close-btn">x</button>
         <h3 class="modal__header">Add your books here!</h3>
-        <form class="modal__form">
+        <form class="modal__form" id="bookForm" action="#" method="get">
           <label for="title"></label>
           <input
             class="modal__input"
             type="text"
             id="title"
             placeholder="Title"
+            name="title"
+            required
           />
           <label for="author"></label>
-          <input class="modal__input"" type="text" id="author"
-          placeholder="Author" />
+          <input
+            class="modal__input"
+            type="text"
+            id="author"
+            placeholder="Author"
+            name="author"
+            required
+          />
           <label for="pages"></label>
           <input
             class="modal__input"
             type="number"
             id="pages"
             placeholder="Pages"
+            name="pages"
+            required
           />
           <div class="modal__read--btn">
             <label class="read" for="isRead">Have you read it?</label>
             <input class="checkbox" type="checkbox" id="isRead" />
           </div>
-          <button class="modal__submit-btn" type="submit">Submit</button>
+          <button class="modal__submit-btn" type="submit" form="bookForm">
+            Submit
+          </button>
         </form>
       </div>
       <div class="overlay"></div>
     </div>
   </body>
+  <script defer src="script.js"></script>
 </html>
