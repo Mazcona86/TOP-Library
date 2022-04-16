@@ -1,8 +1,8 @@
 'use strict';
 
 /* GLOBAL VARIABLES FOR EVENTS */
-let myLibrary = [];
 
+let myLibrary = [];
 const addButton = document.querySelector('.section__btn');
 const cardContainer = document.querySelector('.section__card-container');
 const modal = document.querySelector('.modal');
@@ -12,19 +12,19 @@ const bookTitle = document.getElementById('title');
 const bookAuthor = document.getElementById('author');
 const bookPages = document.getElementById('pages');
 const header = document.querySelector('.header');
-let removeCard = document.querySelectorAll('.section__remove-btn');
+let readBtn = document.querySelector('.section__read-btn');
+let removeBtn = document.querySelectorAll('.section__remove-btn');
 
-/**************************************
-  FUNCTIONS
- **************************************/
+/* FUNCTIONS */
 
-function createNewCard() {
+function createNewBook() {
   const bookCard = document.createElement('div');
   const title = document.createElement('p');
   const author = document.createElement('p');
   const pages = document.createElement('p');
   const readBtn = document.createElement('button');
   const removeBtn = document.createElement('button');
+  const bookIsRead = document.querySelector('#isRead');
 
   bookCard.className = 'section__card-box';
   title.className = 'book-title';
@@ -35,8 +35,13 @@ function createNewCard() {
 
   title.textContent = `${bookTitle.value}`;
   author.textContent = `${bookAuthor.value}`;
+  if (bookIsRead.checked) {
+    readBtn.textContent = 'Read';
+  } else {
+    readBtn.textContent = 'Not read';
+    readBtn.classList.add('section__read-btn--red');
+  }
   pages.textContent = `${bookPages.value}`;
-  readBtn.textContent = 'Read';
   removeBtn.textContent = 'Remove';
 
   bookCard.append(title);
@@ -46,7 +51,7 @@ function createNewCard() {
   bookCard.append(removeBtn);
   cardContainer.append(bookCard);
 
-  // Showing modal after ADD BOOK //
+  // Hidding modal after ADD BOOK //
   modal.classList.add('modal--hidden');
   overlay.classList.toggle('active');
 }
@@ -55,38 +60,39 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-/**************************************
-  CONSTRUCTOR
- **************************************/
+function removeBook() {
+  removeBtn.forEach(item =>
+    item.addEventListener('click', function (e) {
+      e.target.closest('div').removeBtn();
+    })
+  );
+}
+
+/* CONSTRUCTORS */
 
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
-  createNewCard();
 }
 
-/**************************************
-  EVENTLISTENER
- **************************************/
+/* EVENT HANDLERS */
 
+// Adding books
 addButton.addEventListener('click', function () {
   modal.classList.remove('modal--hidden');
   overlay.classList.toggle('active');
 });
 
+// Submitting book info
 modalSubmit.addEventListener('click', function (e) {
   e.preventDefault();
+  createNewBook();
   const book = new Book(bookTitle.value, bookAuthor.value, bookPages.value);
   addBookToLibrary(book);
-  removeCard = document.querySelectorAll('.section__remove-btn');
-  console.log(removeCard);
-});
 
-removeCard.forEach(item =>
-  item.addEventListener('click', function () {
-    console.log(item);
-    console.log(removeCard);
-  })
-);
+  // Updating Nodelist
+  removeBtn = document.querySelectorAll('.section__remove-btn');
+  removeBook();
+});

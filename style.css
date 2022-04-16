@@ -1,5 +1,5 @@
 :root {
-  --color-brand--1: #ffb545;
+  --color-brand--1: #cd524b;
   --color-brand--2: #00c46a;
   --color-primary: #5ec576;
   --color-dark--1: #2d3439;
@@ -207,13 +207,13 @@ body {
   background-color: var(--color-brand--2);
 }
 
+.section__read-btn--red {
+  background-color: var(--color-brand--1);
+}
+
 .section__read-btn:hover {
   filter: brightness(80%);
 }
-
-/* .notReadbtn__card--box {
-  background-color: red;
-} */
 
 .section__remove-btn {
   font-size: 1.1rem;
