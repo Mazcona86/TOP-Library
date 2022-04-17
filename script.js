@@ -5,7 +5,6 @@
 let myLibrary = [];
 const addButton = document.querySelector('.section__btn');
 const cardContainer = document.querySelector('.section__card-container');
-const cardBox = document.querySelector('.section__card-box');
 const modal = document.querySelector('.modal');
 const modalSubmit = document.querySelector('.modal__form');
 const overlay = document.querySelector('.overlay');
@@ -14,12 +13,13 @@ const bookAuthor = document.getElementById('author');
 const bookPages = document.getElementById('pages');
 const header = document.querySelector('.header');
 const bookIsRead = document.querySelector('#isRead');
-let readBtn = document.querySelectorAll('.section__read-btn');
-let removeBtn = document.querySelectorAll('.section__remove-btn');
+const readBtn = document.querySelector('.section__read-btn');
+const removeBtn = document.querySelector('.section__remove-btn');
+const closeBtn = document.querySelector('.modal__close-btn');
 
 /* FUNCTIONS */
 
-function createNewBook(book) {
+function createNewCard(book) {
   const bookCard = document.createElement('div');
   const title = document.createElement('p');
   const author = document.createElement('p');
@@ -52,6 +52,10 @@ function createNewBook(book) {
   bookCard.append(removeBtn);
   cardContainer.append(bookCard);
 
+  // Add EventListener to newly created elements //
+  removeBtn.addEventListener('click', book.removeBook);
+  readBtn.addEventListener('click', book.toggleRead.bind(book));
+
   // Hidding modal after ADD BOOK //
   toggleModal();
 }
@@ -63,6 +67,10 @@ function addBookToLibrary(book) {
 function toggleModal() {
   modal.classList.toggle('modal--hidden');
   overlay.classList.toggle('active');
+  closeBtn.addEventListener('click', function (e) {
+    modal.classList.add('modal--hidden');
+    overlay.classList.remove('active');
+  });
 }
 
 function mainFunction(e) {
@@ -73,15 +81,8 @@ function mainFunction(e) {
     bookPages.value,
     bookIsRead.checked
   );
-  createNewBook(book);
+  createNewCard(book);
   addBookToLibrary(book);
-
-  // Updating Nodelist
-  readBtn = document.querySelectorAll('.section__read-btn');
-  removeBtn = document.querySelectorAll('.section__remove-btn');
-
-  book.removeBook();
-  book.toggleRead();
 }
 
 ///////////////////////////////////////////////////
@@ -94,28 +95,20 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-Book.prototype.toggleRead = function () {
-  readBtn.forEach(item =>
-    item.addEventListener('click', function (e) {
-      console.log(e.target);
-      if (e.target.textContent === 'Read') {
-        item.textContent = 'Not Read';
-        this.read = false;
-        item.classList.toggle('section__read-btn--red');
-      } else {
-        item.textContent = 'Read';
-        item.classList.toggle('section__read-btn--red');
-      }
-    })
-  );
+Book.prototype.toggleRead = function (e) {
+  if (e.target.textContent === 'Read') {
+    e.target.textContent = 'Not Read';
+    this.read = false;
+    e.target.classList.add('section__read-btn--red');
+  } else {
+    e.target.textContent = 'Read';
+    this.read = true;
+    e.target.classList.remove('section__read-btn--red');
+  }
 };
 
-Book.prototype.removeBook = function () {
-  removeBtn.forEach(item =>
-    item.addEventListener('click', function (e) {
-      e.target.closest('div').remove();
-    })
-  );
+Book.prototype.removeBook = function (e) {
+  e.target.closest('div').remove();
 };
 ////////////////////////////////////////////////////////
 
